@@ -14,7 +14,9 @@ import os
 from gtts import gTTS
 import base64
 ```
+
 **Explanation:**
+
 - `streamlit`: Creates the web app interface.
 - `mtranslate`: Translates text between multiple languages.
 - `pandas`: Reads and processes the language CSV file.
@@ -66,7 +68,9 @@ button[kind="primary"]:hover {
 </style>
 """, unsafe_allow_html=True)
 ```
+
 **Explanation:**
+
 - Adds a **background image** with a dark overlay.
 - Styles the **text boxes**, **buttons**, and **sidebar**.
 - Ensures a **futuristic blue-glow UI**.
@@ -82,7 +86,9 @@ lang = df['name'].to_list()
 langcode = df['iso'].to_list()
 lang_array = {lang[i]: langcode[i] for i in range(len(langcode))}
 ```
+
 **Explanation:**
+
 - Reads the list of supported languages from a CSV file.
 - Cleans missing data (`dropna`).
 - Creates a **dictionary** mapping language names to ISO codes.
@@ -96,7 +102,9 @@ st.title("Language-Translation")
 inputtext = st.text_area("Enter your text and listen to how it sounds...", height=100)
 choice = st.sidebar.radio('SELECT LANGUAGE', langlist)
 ```
+
 **Explanation:**
+
 - Displays app title and text input box.
 - Sidebar radio buttons allow selecting the output language.
 
@@ -107,7 +115,9 @@ choice = st.sidebar.radio('SELECT LANGUAGE', langlist)
 ```python
 speech_langs = { "en": "English", "fr": "French", "hi": "Hindi", ... }
 ```
+
 **Explanation:**
+
 - Defines which languages support **speech synthesis** (for gTTS).
 
 ---
@@ -122,7 +132,9 @@ def get_binary_file_downloader_html(bin_file, file_label='File'):
     href = f'<a href="data:application/octet-stream;base64,{bin_str}" download="{os.path.basename(bin_file)}">Download {file_label}</a>'
     return href
 ```
+
 **Explanation:**
+
 - Reads a file, encodes it in Base64, and creates a **download link** in Streamlit.
 
 ---
@@ -143,7 +155,9 @@ if len(inputtext) > 0:
     except Exception as e:
         st.error(e)
 ```
+
 **Explanation:**
+
 - Checks if text is entered.
 - Translates it using the selected language.
 - If that language supports speech, it:
@@ -155,14 +169,10 @@ if len(inputtext) > 0:
 
 ## ✅ Summary
 
-| Feature | Purpose |
-|----------|----------|
-| 🎨 Custom CSS | Gives futuristic world-map design |
-| 🌐 Translation | Uses `mtranslate` for 60+ languages |
-| 🔊 Text-to-Speech | Converts translated text to audio via `gTTS` |
-| 💾 Download Option | Base64 link lets users save MP3 |
-| 🧱 Streamlit Layout | Two-column responsive interface |
-
----
-
-**Thanks to open-source contributors and mentors for inspiration! 🙌**  
+| Feature             | Purpose                                        |
+| ------------------- | ---------------------------------------------- |
+| 🎨 Custom CSS       | Gives futuristic world-map design              |
+| 🌐 Translation      | Uses `mtranslate` for 60+ languages          |
+| 🔊 Text-to-Speech   | Converts translated text to audio via `gTTS` |
+| 💾 Download Option  | Base64 link lets users save MP3                |
+| 🧱 Streamlit Layout | Two-column responsive interface                |
